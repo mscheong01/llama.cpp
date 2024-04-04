@@ -15,8 +15,8 @@ on:
     types: [opened, synchronize, reopened]
     paths: ['**/CMakeLists.txt', '**/Makefile', '**/*.h', '**/*.hpp', '**/*.c', '**/*.cpp', '**/*.cu', '**/*.swift', '**/*.m']
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+concurrency: 
+  group: ${{ github.ref == 'refs/heads/master' ? 'master-' + github.run_id : github.workflow + '-' + github.ref }}
   cancel-in-progress: true
 
 env:

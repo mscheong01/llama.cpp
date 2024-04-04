@@ -16,8 +16,8 @@ on:
       - 'requirements.txt'
       - 'requirements/*.txt'
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+concurrency: 
+  group: ${{ github.ref == 'refs/heads/master' ? 'master-' + github.run_id : github.workflow + '-' + github.ref }}
   cancel-in-progress: true
 
 jobs:
